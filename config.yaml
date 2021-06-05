@@ -3,11 +3,10 @@ subject: 'cat:cs.* OR cat:eess.*'
 
 # 検索キーワード
 keywords:
-        NILM: 3
-        disaggregation: 3
+        NILM: 5
+        disaggregation: 5
         energy: 1
-        building: 1
-        basis function: 1
+        building: 2
         BEMS: 2
 
 # 通知の閾値
