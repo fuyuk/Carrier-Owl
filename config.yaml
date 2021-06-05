@@ -1,11 +1,14 @@
 # arxivの学問領域の指定
-subject: 'cat:cs.*'
+subject: 'cat:cs.* OR cat:eess.*'
 
 # 検索キーワード
 keywords:
-        kaggle: 3
-        resnet: 3
-        anomaly detection: 1
+        NILM: 3
+        disaggregation: 3
+        energy: 1
+        building: 1
+        basis function: 1
+        BEMS: 2
 
 # 通知の閾値
 score_threshold: 0
