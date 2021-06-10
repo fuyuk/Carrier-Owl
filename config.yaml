@@ -5,7 +5,6 @@ subject: 'cat:cs.* OR cat:eess.*'
 keywords:
         NILM: 5
         disaggregation: 5
-        energy: 1
         building: 2
         BEMS: 2
 
