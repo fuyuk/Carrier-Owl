@@ -196,7 +196,7 @@ def main():
     # notify(results, slack_id, line_token)
     
     day1, day2 = check_reservation()
-    if day1 or day2 is None:
+    if (day1 is None) or (day2 is None):
         send2app("空きがあります。", slack_id, line_token)
     else:
         pass
