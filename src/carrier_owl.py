@@ -14,6 +14,7 @@ import urllib.parse
 from dataclasses import dataclass
 import arxiv
 import requests
+import lxml.html
 # setting
 warnings.filterwarnings('ignore')
 
@@ -155,6 +156,16 @@ def get_config() -> dict:
     return config
 
 
+def check_reservation() -> str:
+    search_url="https://fumotoppara.secure.force.com/RS_Top"
+    data =  {'f_nengetsu': '2022年4月',
+             'j_id0:fSearch': 'j_id0:fSearch'}
+    response = requests.post(search_url, data=data)
+    html = lxml.html.fromstring(response.content)
+    html_tag = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[30]/td[3]')
+    return html_tag[0].text
+
+
 def main():
     # debug用
     parser = argparse.ArgumentParser()
@@ -181,8 +192,12 @@ def main():
 
     slack_id = os.getenv("SLACK_ID") or args.slack_id
     line_token = os.getenv("LINE_TOKEN") or args.line_token
-    notify(results, slack_id, line_token)
-
+    
+    results = check_reservation()
+    if resluts is None:
+        notify("空きがあります。", slack_id, line_token)
+    else:
+        notify("空きがありません。", slack_id, line_token)  
 
 if __name__ == "__main__":
     main()
