@@ -194,7 +194,7 @@ def main():
     line_token = os.getenv("LINE_TOKEN") or args.line_token
     
     results = check_reservation()
-    if resluts is None:
+    if results is None:
         notify("空きがあります。", slack_id, line_token)
     else:
         notify("空きがありません。", slack_id, line_token)  
