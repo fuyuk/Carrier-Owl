@@ -198,7 +198,8 @@ def main():
     if results is None:
         send2app("空きがあります。", slack_id, line_token)
     else:
-        send2app("空きがありません。", slack_id, line_token)  
+        pass
+        # send2app("空きがありません。", slack_id, line_token)  
 
 if __name__ == "__main__":
     main()
