@@ -163,7 +163,7 @@ def check_reservation() -> str:
     response = requests.post(search_url, data=data)
     html = lxml.html.fromstring(response.content)
     html_tag = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[30]/td[3]')
-    html_tag2 = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[31]/td[3]')
+    html_tag2 = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[29]/td[3]')
     return html_tag[0].text, html_tag2[0].text
 
 
@@ -195,12 +195,12 @@ def main():
     line_token = os.getenv("LINE_TOKEN") or args.line_token
     # notify(results, slack_id, line_token)
     
-    results = check_reservation()
-    if results is None:
+    day1, day2 = check_reservation()
+    if day1 or day2 is None:
         send2app("空きがあります。", slack_id, line_token)
     else:
         pass
-        # send2app("空きがありません。", slack_id, line_token)  
+        send2app("空きがありません。", slack_id, line_token)  
 
 if __name__ == "__main__":
     main()
