@@ -164,7 +164,7 @@ def check_reservation() -> str:
     html = lxml.html.fromstring(response.content)
     html_tag = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[30]/td[3]')
     html_tag2 = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[31]/td[3]')
-    return html_tag[0].text, html_tag2[0].text
+    return "a", html_tag2[0].text
 
 
 def main():
