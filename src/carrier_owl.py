@@ -167,8 +167,8 @@ def check_reservation() -> str:
     html_tag = []
     for day in days:
         element = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr['+ str(day+1) +']/td[3]')
-        html_tag.append(element)
-    return [html_tag[i].text for i in range(len(html_tag))]
+        html_tag.append(element.text)
+    return html_tag
 
 def main():
     # debug用
