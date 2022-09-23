@@ -158,15 +158,17 @@ def get_config() -> dict:
 
 def check_reservation() -> str:
     search_url="https://fumotoppara.secure.force.com/RS_Top"
-    data =  {'f_nengetsu': '2022年9月',
+    data =  {'f_nengetsu': '2022年10月',
              'j_id0:fSearch': 'j_id0:fSearch'}
     response = requests.post(search_url, data=data)
     html = lxml.html.fromstring(response.content)
-    html_tag = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[4]/td[3]')
-    html_tag2 = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[11]/td[3]')
-    html_tag3 = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[18]/td[3]')
-    html_tag4 = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr[25]/td[3]')
-    return [html_tag[0].text, html_tag2[0].text, html_tag3[0].text, html_tag4[0].text]
+    # 日付＋1の数値を入れる
+    days = [8, 9]
+    html_tag = []
+    for day in days:
+        element = html.xpath('//*[@id="wrapper"]/div[2]/div[2]/div[2]/table/tbody/tr['+ str(day+1) +']/td[3]')
+        html_tag.append(element)
+    return [html_tag[i].text for i in range(len(html_tag))]
 
 def main():
     # debug用
